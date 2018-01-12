@@ -1,0 +1,54 @@
+@model IEnumerable<ProjetoCidades.Models.Cidade>
+<div>
+
+    <h2>Minhas Cidades</h2>
+
+    <p>
+        <a asp-action="Cadastrar">Cadastrar Nova Cidade</a>    
+    </p>    
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Estado</th>
+                <th>Habitantes</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        @{ 
+            foreach(var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Id
+                    </td>
+                    <td>
+                        @item.Nome
+                    </td>
+                    <td>
+                        @item.Estado
+                    </td>
+                    <td>
+                        @item.Habitantes
+                    </td>
+                    <td>
+                        <!-- 1 - texto exibido | 2 - action que vai chamar | 3 - controller a ser acessado | 4 - rota -->
+                        @Html.ActionLink("Editar", "Editar", "Cidades", new {@item.Id})
+                        <!-- <a asp-action="Editar" asp-route-id="arrobaitem.Id">Editar</a> -->
+                         @Html.ActionLink("Detalhes", "Detalhes", "Detalhes", new {@item.Id})
+                         <!-- <a asp-action="Detalhes" asp-route-id="arrobaitem.Id">Excluir</a> -->
+                         @Html.ActionLink("Excluir", "Excluir", "Excluir", new {@item.Id})
+                        <!-- <a asp-action="Excluir" asp-route-id="arrobaitem.Id">Excluir</a> -->
+                    </td>
+
+                </tr>
+            }
+        }
+        </tbody>
+
+    </table>
+
+</div>
